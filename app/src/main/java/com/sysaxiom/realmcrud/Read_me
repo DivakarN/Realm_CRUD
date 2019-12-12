@@ -11,3 +11,6 @@ Step 2: Apply the realm-android plugin to the top of the application level build
 
     apply plugin: 'kotlin-kapt'
     apply plugin: 'realm-android'
+
+###OBSERVATIONS
+1. User Id Should be auto increment
