@@ -1,0 +1,13 @@
+Steps for using Realm Kotlin
+
+Installation:
+
+Step 1: Add the class path dependency to build.gradle
+
+Inside dependencies:
+    classpath "io.realm:realm-gradle-plugin:6.0.1"
+
+Step 2: Apply the realm-android plugin to the top of the application level build.gradle file.
+
+    apply plugin: 'kotlin-kapt'
+    apply plugin: 'realm-android'
