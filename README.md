@@ -13,9 +13,12 @@ readily usable component to integrate it with any projects
 Step 1: Add the class path dependency to build.gradle
 
 Inside dependencies:
-<pre>
+
+``` 
 classpath "io.realm:realm-gradle-plugin:6.0.1"
-</pre>
+```
+
+
 
 Step 2: Apply the realm-android plugin to the top of the application level build.gradle file.
 
@@ -30,7 +33,7 @@ Step 2: Apply the realm-android plugin to the top of the application level build
 To setup the initial context for realm which we can use throughout the application we are extending
 the application
 
-<pre>
+```
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
@@ -42,13 +45,15 @@ class MyApplication : Application() {
         Realm.setDefaultConfiguration(config)
     }
 }
-</pre>
+```
+
 
 Include the extended application inside <application> tag in Manifest file
 
-<pre>
+```
     android:name=".MyApplication">
-</pre>
+```
+
 
 
 ----------------------------------------------------------------------------------------------------
