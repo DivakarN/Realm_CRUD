@@ -11,8 +11,7 @@ class RealmExampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //insertData()
-
+        insertData()
         getData()
     }
 
