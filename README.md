@@ -65,25 +65,32 @@ example class
 
 A static or companion object is implemented to invoke without object instantiation.
 
-(i) Read -
+##### (i) **Read** -
 
-getallDataforOneObject - to get all data for single realm object.
-getDatafromOneObjectbasedOnCondtion - to get data for realm object based on condition.
-getDatabyLimit - to get data based on limit (number of rows)
+*getallDataforOneObject* - to get all data for single realm object.
 
-(ii) Writes
-insertData - a function to insert one record at a time
+*getDatafromOneObjectbasedOnCondtion* - to get data for realm object based on condition.
 
-(iii) Updates
-updateData - to update a record's efficiency (or any one or many fields) based on User Id
+*getDatabyLimit* - to get data based on limit (number of rows)
 
-(iv) Deletes - three function, one to delete all record of an object, one to delete specific record
-based on condition and another to delete all realm objects
 
-deleteAll - to delete all realm objects
-deleteSpecificObject - to delete all record of specific object
-deleteSpecificObjectonCondition - to delete specific record based on condition
-deleteSpecifiObjectbasedonLimit - to delete number of records (limit) of an object
+##### (ii) **Writes**
+
+*insertData* - a function to insert one record at a time
+
+##### (iii) **Updates**
+
+*updateData* - to update a record's efficiency (or any one or many fields) based on User Id
+
+##### (iv) **Deletes**
+
+*deleteAll* - to delete all realm objects
+
+*deleteSpecificObject* - to delete all record of specific object
+
+*deleteSpecificObjectonCondition* - to delete specific record based on condition
+
+*deleteSpecifiObjectbasedonLimit* - to delete number of records (limit) of an object
 
 ----------------------------------------------------------------------------------------------------
 
