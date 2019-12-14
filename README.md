@@ -1,45 +1,100 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+Realm Kotlin
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+Introduction:
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+This project is created in the intension to understand the CRUD operation of realm and make it as
+readily usable component to integrate it with any projects
 
----
 
-## Edit a file
+----------------------------------------------------------------------------------------------------
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+Installation:
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+Step 1: Add the class path dependency to build.gradle
 
----
+Inside dependencies:
+    classpath "io.realm:realm-gradle-plugin:6.0.1"
 
-## Create a file
+Step 2: Apply the realm-android plugin to the top of the application level build.gradle file.
 
-Next, you’ll add a new file to this repository.
+    apply plugin: 'kotlin-kapt'
+    apply plugin: 'realm-android'
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+----------------------------------------------------------------------------------------------------
 
----
+Configuration:
 
-## Clone a repository
+To setup the initial context for realm which we can use throughout the application we are extending
+the application
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        // Initialize Realm. Should only be done once when the application starts.
+        Realm.init(this)
+        val config = RealmConfiguration.Builder()
+            .deleteRealmIfMigrationNeeded()
+            .build()
+        Realm.setDefaultConfiguration(config)
+    }
+}
 
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
+Include the extended application in Manifest file
 
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+<application
+        android:name=".MyApplication"
+
+
+----------------------------------------------------------------------------------------------------
+
+Handler Part:
+
+Realm Handler File:
+
+1) Realm Class - Given an example realm class to understand the different data types that Realm is
+offering for Android Kotlin. User id is given as primary key and it is auto incremented for this
+example class
+
+
+2) Handler Part -
+
+A static or companion object is implemented to invoke without object instantiation.
+
+(i) Read -
+
+getallDataforOneObject - to get all data for single realm object.
+getDatafromOneObjectbasedOnCondtion - to get data for realm object based on condition.
+getDatabyLimit - to get data based on limit (number of rows)
+
+(ii) Writes
+insertData - a function to insert one record at a time
+
+(iii) Updates
+updateData - to update a record's efficiency (or any one or many fields) based on User Id
+
+(iv) Deletes - three function, one to delete all record of an object, one to delete specific record
+based on condition and another to delete all realm objects
+
+deleteAll - to delete all realm objects
+deleteSpecificObject - to delete all record of specific object
+deleteSpecificObjectonCondition - to delete specific record based on condition
+deleteSpecifiObjectbasedonLimit - to delete number of records (limit) of an object
+
+----------------------------------------------------------------------------------------------------
+
+Usage / Example:
+
+All function invoking part is given as regions where you can try/implement by invoking each function
+and seeing it in Console.
+
+----------------------------------------------------------------------------------------------------
+
+###OBSERVATIONS
+1. User Id Should be auto increment - done
+2. Lets try to achieve Single File Concept (Like Class in Single File) - done
+3. Possibility to Read Array like this
+    This should be dynamic like
+        This is too complicated, we can do in future - getRecord('sorttype','records');
+        This is okay i feel, getRecord(100); -> It will bring old 100 (records) - done
+4. Possibility to Delete array of data like (Delete 1 to 60 Records) or Delete [1,2,3,9,10] - done

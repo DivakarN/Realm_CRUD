@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class RealmExampleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        updateData()
+        //insertData()
+
         getData()
     }
 
@@ -25,12 +26,17 @@ class MainActivity : AppCompatActivity() {
         val data = RealmHandler.getDatafromOneObjectbasedOnCondtion(this,user_id)
         Log.d("getData",data.toString())
     }
+    fun getDatabyRecordLimit() {
+        val limit:Long = 100
+        val data = RealmHandler.getDatabyLimit(this,limit)
+        Log.d("getData",data.toString())
+    }
     //endregion
 
     //region Write
     fun insertData() {
         val dataArray = byteArrayOf(0x2E, 0x38)
-        RealmHandler.insertData(this,3,"Sudhakar","Sudhakar@gmail.com",Date(),dataArray,true,90.0,90.000.toFloat())
+        RealmHandler.insertData(this,"Sudhakar","Sudhakar@gmail.com",Date(),dataArray,true,90.0,90.000.toFloat())
     }
     //endregion
 
@@ -50,6 +56,10 @@ class MainActivity : AppCompatActivity() {
     }
     fun deleteSpecificObjectforCondition() {
         RealmHandler.deleteSpecificObjectonCondition(this,1)
+    }
+    fun deleteSpecificObjectbasedonLimit() {
+        val limit:Long = 40
+        RealmHandler.deleteSpecifiObjectbasedonLimit(this,limit)
     }
     //endregion
 }
